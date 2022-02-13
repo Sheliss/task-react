@@ -1,10 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import AddTask from './components/AddTask';
+import Header from './components/Header';
+
+const title = 'Task Manager';
+const buttonName = 'Add New';
+
 
 function App() {
   return (
-    <div className="App">
-      f
+    <div className="app">
+      <div className="app__inner">
+        <Header {...{title, buttonName}} />
+        <AddTask />
+      </div>
     </div>
   );
 }

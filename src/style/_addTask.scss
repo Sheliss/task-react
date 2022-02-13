@@ -1,0 +1,36 @@
+.addTask__form {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid #011627;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.addTask__label {
+    font-size: 18px;
+    width: 100%;
+    font-weight: 700;
+}
+
+.addTask__input {
+    margin-top: 5px;
+    width: 100%;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 3px;
+    border-color: #011627;
+    border-style: solid;
+
+    &:focus {
+        outline: 0;
+        border-color: #2EC4B6;
+    }
+}
+
+.button--addTask {
+    padding: 5px;
+    font-size: 18px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
