@@ -1,9 +1,6 @@
 import React from 'react'
 import Button from './Button'
 
-const buttonName = 'Add Task';
-const buttonMod = 'addTask';
-
 const AddTask = () => {
   return (
     <div className="addTask">
@@ -16,7 +13,7 @@ const AddTask = () => {
                 Day & Time:
             </label>
             <input id="taskDate" type="text" className="addTask__input" />
-            <Button {...{buttonName, buttonMod}}/>
+            <Button buttonName={'Add Task'} buttonMod={'addTask'}/>
         </form>
     </div>
   )

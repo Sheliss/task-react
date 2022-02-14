@@ -1,13 +1,24 @@
 import React from 'react'
 import Button from './Button'
+import { useSelector, useDispatch } from 'react-redux'
+import { change_task_show } from '../store/actions/addTask'
+
 
 const Header = ({ title, buttonName }) => {
+  const dispatch = useDispatch();
+  const menuShow = useSelector(state => state.addTask.menuShow);
+
+  const menuSwitch = () => {
+    console.log(menuShow);
+    dispatch(change_task_show());
+  }
+
   return (
     <header className='header'>
         <h1>
             {title}
         </h1>
-        <Button buttonName={buttonName} />
+        <Button buttonName={buttonName} buttonMod={ menuShow ? 'red' : 'green' } onClick={menuSwitch}/>
     </header>
   )
 }
