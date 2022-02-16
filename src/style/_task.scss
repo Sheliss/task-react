@@ -1,0 +1,9 @@
+.task {
+    padding: 5px;
+    border: 2px solid #011627;
+    margin-top: 5px;
+
+    &:first-child {
+        margin: 0;
+    }
+}

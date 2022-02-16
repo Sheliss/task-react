@@ -1,4 +1,4 @@
-button {
+.button {
     font-size: 22px;
     font-weight: 700;
     padding: 5px;
@@ -8,9 +8,21 @@ button {
     border-radius: 3px;
     cursor: pointer;
     transition: all .1s;
+    width: 120px;
 
     &:hover {
         color: #2EC4B6;
-        background-color: #FDFFFC;
+        background-color: transparent;
+    }
+
+    &--red {
+        background-color: #E71D36;
+        border: 2px solid #E71D36;
+
+        
+        &:hover {
+            color: #E71D36;
+            background-color: transparent;
+        }
     }
 }

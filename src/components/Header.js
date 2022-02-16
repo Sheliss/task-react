@@ -4,12 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { change_task_show } from '../store/actions/addTask'
 
 
-const Header = ({ title, buttonName }) => {
+const Header = ({ title }) => {
   const dispatch = useDispatch();
   const menuShow = useSelector(state => state.addTask.menuShow);
 
   const menuSwitch = () => {
-    console.log(menuShow);
     dispatch(change_task_show());
   }
 
@@ -18,7 +17,7 @@ const Header = ({ title, buttonName }) => {
         <h1>
             {title}
         </h1>
-        <Button buttonName={buttonName} buttonMod={ menuShow ? 'red' : 'green' } onClick={menuSwitch}/>
+        <Button buttonName={ menuShow ? 'Hide' : 'Add Task'} buttonMod={ menuShow ? 'red' : 'green' } onClick={menuSwitch}/>
     </header>
   )
 }

@@ -1,3 +1,17 @@
+.addTask {
+    overflow: hidden;
+    transition: height .5s;
+
+    &--hide {
+        height: 0;
+    }
+
+    &--show {
+        height: 209px;
+    }
+}
+
+
 .addTask__form {
     margin-top: 20px;
     padding: 10px;
