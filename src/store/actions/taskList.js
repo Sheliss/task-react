@@ -17,3 +17,10 @@ export const task_list_update = (data) => {
         payload: data
     };
 };
+
+export const task_delete = (index) => {
+    return {
+        type: 'TASK_DELETE',
+        payload: index
+    };
+};

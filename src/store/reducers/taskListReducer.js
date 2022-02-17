@@ -21,7 +21,14 @@ const taskListReducer = (state = initState, action) => {
             return {
                 ...state,
                 data: [...state.data, action.payload]
-            }
+            };
+        case "TASK_DELETE":
+            return {
+                ...state,
+                data: state.data.filter((i) => {
+                    return i !== state.data[action.payload]
+                })
+            };
         default:
             return state
     }
