@@ -1,18 +1,19 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import { VscClose } from 'react-icons/vsc'
-import { task_delete } from '../store/actions/taskList';
 
-const Task = ({ task, index }) => {
-  const dispatch = useDispatch();
+const Task = ({ task, req }) => {
   const taskItem = task; 
 
-  const deleteTask = (index) => {
-
-    
-    dispatch(task_delete(index))
-    
-    return;
+  const deleteTask = async(id) => {
+    await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'DELETE',
+    }).then((res) => {
+      if(res.status === 200) {
+        req();
+      } else {
+        throw new Error(`Delete error, code ${res.status}`)
+      }
+    })
   }
 
   return (
@@ -26,7 +27,7 @@ const Task = ({ task, index }) => {
         </div>
       </div>
       <div className="task__col task__col--second">
-          <button className="task__close" onClick={() => deleteTask(index)}>
+          <button className="task__close" onClick={() => deleteTask(taskItem.id)}>
             <VscClose />
           </button>
       </div>

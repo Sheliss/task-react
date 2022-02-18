@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import Button from './Button'
-import { useSelector, useDispatch } from 'react-redux'
-import { task_list_update } from '../store/actions/taskList'
+import { useSelector } from 'react-redux'
 
-const AddTask = () => {
-  const dispatch = useDispatch();
+const AddTask = ({ req }) => {
   const menuShow = useSelector(state => state.addTask.menuShow);
 
   const [text, setText] = useState('');
@@ -23,13 +21,32 @@ const AddTask = () => {
       return
     }
 
-    dispatch(task_list_update(data));
+    updateDB(data);
 
     setText('');
     setDay('');
 
     return; 
   }
+
+  const updateDB = async(data) => {
+    await fetch('http://localhost:5000/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      if(res.status === 201) {
+        req();
+      } else {
+        throw new Error(`Task adding error, code ${res.status}`)
+      }
+    })
+
+  }
+  
 
   return (
     <div className={`addTask addTask--${menuShow ? 'show' : 'hide'}`}>

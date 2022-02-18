@@ -1,26 +1,17 @@
 import React, { useEffect } from 'react'
 import Task from './Task'
+import { VscClose } from 'react-icons/vsc'
 import { useSelector, useDispatch } from 'react-redux';
-import { task_list_request, task_list_success } from '../store/actions/taskList'
+import { task_list_request } from '../store/actions/taskList'
 
-const TaskList = () => {
+const TaskList = ({ req }) => {
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(task_list_request());
-        const fetchList = async() => {
-            const fetchList = await fetch('http://localhost:5000/tasks');
+        req();
+    }, [req, dispatch])
 
-            const list = await fetchList.json();
-
-            return list;
-        }
-
-        fetchList()
-            .then(res => dispatch(task_list_success(res)))
-
-    }, [dispatch])
-
+    
     const list = useSelector(state => state.taskList.data);
     const loading = useSelector(state => state.taskList.loading);
     
@@ -28,7 +19,7 @@ const TaskList = () => {
         return (
             <div className="taskList__inner">
                 {list.map((task, index) => (
-                    <Task key={index} task={task} index={index}/>
+                    <Task key={index} task={task} index={index} req={req}/>
                 ))}
             </div>
         )
@@ -37,7 +28,9 @@ const TaskList = () => {
   return (
     <div className="taskList">
         {loading ? (
-            <div className="taskList__loading">f</div>
+            <div className="taskList__loading rotating">
+                <VscClose />
+            </div>
         ) : (
             tasksList(list)
         )}
