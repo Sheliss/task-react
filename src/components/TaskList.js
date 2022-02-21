@@ -19,7 +19,7 @@ const TaskList = ({ req }) => {
         return (
             <div className="taskList__inner">
                 {list.map((task, index) => (
-                    <Task key={index} task={task} index={index} req={req}/>
+                    <Task key={index} task={task} index={index}/>
                 ))}
             </div>
         )

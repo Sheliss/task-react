@@ -8,14 +8,10 @@ const Button = ({ buttonName, buttonMod, onClick }) => {
   )
 }
 
-const emptyClick = () => {
-  console.log('Empty onClick!');
-}
 
 Button.defaultProps = {
     buttonName: 'Button',
-    buttonMod: 'button',
-    onClick: emptyClick()
+    buttonMod: 'button'
 }
 
 export default Button

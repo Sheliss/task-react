@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import Button from './Button'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { task_list_update } from '../store/actions/taskList';
 
-const AddTask = ({ req }) => {
+const AddTask = () => {
+  const dispatch = useDispatch();
   const menuShow = useSelector(state => state.addTask.menuShow);
 
   const [text, setText] = useState('');
@@ -30,7 +32,7 @@ const AddTask = ({ req }) => {
   }
 
   const updateDB = async(data) => {
-    await fetch('http://localhost:5000/tasks', {
+    const res = await fetch('http://localhost:5000/tasks', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -39,11 +41,15 @@ const AddTask = ({ req }) => {
       body: JSON.stringify(data),
     }).then((res) => {
       if(res.status === 201) {
-        req();
+        return res;
       } else {
         throw new Error(`Task adding error, code ${res.status}`)
       }
     })
+
+    const postedData = await res.json();
+
+    dispatch(task_list_update(postedData));
 
   }
   

@@ -1,7 +1,10 @@
 import React from 'react'
 import { VscClose } from 'react-icons/vsc'
+import { useDispatch } from 'react-redux';
+import { task_delete } from '../store/actions/taskList';
 
-const Task = ({ task, req }) => {
+const Task = ({ task}) => {
+  const dispatch = useDispatch();
   const taskItem = task; 
 
   const deleteTask = async(id) => {
@@ -9,7 +12,7 @@ const Task = ({ task, req }) => {
       method: 'DELETE',
     }).then((res) => {
       if(res.status === 200) {
-        req();
+        dispatch(task_delete(id));
       } else {
         throw new Error(`Delete error, code ${res.status}`)
       }

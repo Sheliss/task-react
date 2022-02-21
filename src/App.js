@@ -25,8 +25,8 @@ function App() {
     <div className="app">
       <div className="app__inner">
         <Header title={'Task Manager'} />
-        <AddTask req={requestList}/>
-        <TaskList req={requestList} />
+        <AddTask />
+        <TaskList req={requestList}/>
       </div>
     </div>
   );
